@@ -53,4 +53,15 @@ python3 manage.py test
 
 or you could just use a swagger to see all endpoints and methods that available, just visit the following route
 
-- /swagger
+- http://127.0.0.1:8000/swagger/
+
+# Docker
+
+To create an image 
+```
+docker build . -t drf
+```
+Run the image, so it creates a container
+```
+docker run -p 8000:8000 drf
+```
