@@ -65,3 +65,12 @@ Run the image, so it creates a container
 ```
 docker run -p 8000:8000 drf
 ```
+
+# Documentations
+
+to enhance your understanding of the specific package, you can read the documentations that I listed below
+
+- [Documentation Django Rest](https://www.django-rest-framework.org/)
+- [Documentation drf-yasg](https://drf-yasg.readthedocs.io/en/stable/)
+- [Documentation dj-rest-auth](https://dj-rest-auth.readthedocs.io/en/latest/)
+- [Documentation django](https://docs.djangoproject.com/en/5.0/)
