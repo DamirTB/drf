@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
+from .permissions import IsOwner
 
 class PostAPIList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -19,10 +20,10 @@ class CommentAPIList(generics.ListCreateAPIView):
 
 class PostAPIDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsOwner]
     serializer_class = PostSerializer
 
 class CommentAPIDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsOwner]
     serializer_class = CommentSerializer

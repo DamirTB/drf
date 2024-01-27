@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from rest_framework import status
+from .models import Post
 
 class PostTest(TestCase):
     def setUp(self):
@@ -22,6 +23,16 @@ class PostTest(TestCase):
         self.assertEqual(response_post.status_code, status.HTTP_403_FORBIDDEN)
 
 class CommentTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user = get_user_model().objects.create_user(username='testuser', password='testpassword123')
+        #data_post = {'title' : 'Test Title', 'text' : 'Test Text', 'author':self.user.id}
+        self.post = Post.objects.create(title='Test title', text='Test text', author=self.user)
     def test_comment_get(self):
-        response_get = self.client.get('/api/v1/comment')
-        self.assertEqual(response_get.status_code, status.HTTP_200_OK)
+        response = self.client.get('/api/v1/comment')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    def test_comment_post(self):
+        self.client.force_authenticate(user=self.user)
+        data = {'text' : 'test comment', 'author' : self.user.id, 'post' : self.post.id}
+        response = self.client.post('/api/v1/comment', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
