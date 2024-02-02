@@ -52,6 +52,7 @@ python3 manage.py test
 - dj-rest-auth/user [METHODS GET, PUT, PATCH]
 - api-auth/login [METHODS GET, POST]
 - api-auth/logout [METHODS GET]
+
 or you could just use a swagger to see all endpoints and methods that available, just visit the following route
 
 - http://127.0.0.1:8000/swagger/
